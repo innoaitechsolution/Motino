@@ -98,22 +98,24 @@ function App() {
 
   return (
     <div className="app">
-      <header className="app-header">
+      <header className="app-header entrance-in entrance-in--1">
         <h1 className="app-title">Motino</h1>
         <p className="app-subtitle">Discover your motivation for the day</p>
       </header>
 
-      <div className="wheel-container">
+      <div className="wheel-container entrance-in entrance-in--2">
         <Wheel rotation={rotation} isSpinning={isSpinning} />
       </div>
 
-      <SpinButton onClick={handleSpin} isSpinning={isSpinning} canSpinToday={canSpinToday} />
+      <div className="spin-section entrance-in entrance-in--3">
+        <SpinButton onClick={handleSpin} isSpinning={isSpinning} canSpinToday={canSpinToday} />
 
-      {comeBackMessage && (
-        <p className="come-back-message" role="status">
-          {comeBackMessage}
-        </p>
-      )}
+        {comeBackMessage && (
+          <p className="come-back-message" role="status">
+            {comeBackMessage}
+          </p>
+        )}
+      </div>
 
       <QuoteBox
         quote={selectedQuote}

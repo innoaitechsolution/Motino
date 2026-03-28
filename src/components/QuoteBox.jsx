@@ -5,12 +5,12 @@ function QuoteBox({ quote, onShare, shareFeedback }) {
 
   return (
     <div className="quote-container">
-      <blockquote className="quote-box">
+      <blockquote className="quote-box quote-reveal" key={quote}>
         <p className="quote-text">{quote}</p>
       </blockquote>
 
       {onShare && (
-        <div className="share-block">
+        <div className="share-block quote-share-reveal" key={`share-${quote}`}>
           <button type="button" className="share-button" onClick={onShare}>
             Share
           </button>
