@@ -1,5 +1,3 @@
-import '../styles/layout.css';
-
 function SpinButton({ onClick, isSpinning, canSpinToday }) {
   const busy = isSpinning;
   const locked = !canSpinToday && !isSpinning;

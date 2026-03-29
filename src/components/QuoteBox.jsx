@@ -1,5 +1,3 @@
-import '../styles/layout.css';
-
 function QuoteBox({ quote, onShare, shareFeedback }) {
   if (!quote) return null;
 

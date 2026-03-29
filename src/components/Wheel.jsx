@@ -1,5 +1,3 @@
-import '../styles/wheel.css';
-
 function Wheel({ rotation, isSpinning }) {
   return (
     <div className="wheel-wrapper">

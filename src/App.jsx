@@ -23,18 +23,28 @@ function App() {
     const lastSpinDate = localStorage.getItem(STORAGE_DATE);
 
     if (lastSpinDate === today) {
-      setCanSpinToday(false);
       const raw = localStorage.getItem(STORAGE_QUOTE);
+      let restored = false;
       if (raw) {
         try {
           const { quote } = JSON.parse(raw);
-          if (typeof quote === 'string') setSelectedQuote(quote);
+          if (typeof quote === 'string' && quote.trim().length > 0) {
+            setSelectedQuote(quote);
+            restored = true;
+          }
         } catch {
-          /* ignore */
+          /* malformed entry — clear below */
         }
+      }
+      if (restored) {
+        setCanSpinToday(false);
+      } else {
+        localStorage.removeItem(STORAGE_DATE);
+        localStorage.removeItem(STORAGE_QUOTE);
       }
     } else if (lastSpinDate && lastSpinDate !== today) {
       localStorage.removeItem(STORAGE_QUOTE);
+      localStorage.removeItem(STORAGE_DATE);
     }
   }, []);
 
@@ -77,23 +87,28 @@ function App() {
 
     const plain = selectedQuote;
 
-    try {
-      if (navigator.share) {
+    if (typeof navigator.share === 'function') {
+      try {
         await navigator.share({ text: plain });
         return;
+      } catch (err) {
+        if (err && err.name === 'AbortError') return;
       }
-    } catch (err) {
-      if (err && err.name === 'AbortError') return;
     }
 
     try {
-      await navigator.clipboard.writeText(plain);
-      setShareFeedback('Quote copied to clipboard');
-      window.setTimeout(() => setShareFeedback(''), 3500);
+      if (typeof navigator.clipboard?.writeText === 'function') {
+        await navigator.clipboard.writeText(plain);
+        setShareFeedback('Quote copied to clipboard');
+        window.setTimeout(() => setShareFeedback(''), 3500);
+        return;
+      }
     } catch {
-      setShareFeedback('Could not copy — try selecting the quote manually.');
-      window.setTimeout(() => setShareFeedback(''), 3500);
+      /* fall through to message */
     }
+
+    setShareFeedback('Could not copy — try selecting the quote manually.');
+    window.setTimeout(() => setShareFeedback(''), 3500);
   };
 
   return (
