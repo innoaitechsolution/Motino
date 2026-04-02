@@ -15,8 +15,12 @@ function App() {
   const [isSpinning, setIsSpinning] = useState(false);
   const [selectedQuote, setSelectedQuote] = useState(null);
   const [canSpinToday, setCanSpinToday] = useState(true);
-  const [comeBackMessage, setComeBackMessage] = useState('');
   const [shareFeedback, setShareFeedback] = useState('');
+  const [nativeShareAvailable, setNativeShareAvailable] = useState(false);
+
+  useEffect(() => {
+    setNativeShareAvailable(typeof navigator.share === 'function');
+  }, []);
 
   useEffect(() => {
     const today = new Date().toDateString();
@@ -49,14 +53,8 @@ function App() {
   }, []);
 
   const handleSpin = () => {
-    if (isSpinning) return;
+    if (isSpinning || !canSpinToday) return;
 
-    if (!canSpinToday) {
-      setComeBackMessage('Come back tomorrow to spin again.');
-      return;
-    }
-
-    setComeBackMessage('');
     setIsSpinning(true);
     setSelectedQuote(null);
 
@@ -125,10 +123,8 @@ function App() {
       <div className="spin-section entrance-in entrance-in--3">
         <SpinButton onClick={handleSpin} isSpinning={isSpinning} canSpinToday={canSpinToday} />
 
-        {comeBackMessage && (
-          <p className="come-back-message" role="status">
-            {comeBackMessage}
-          </p>
+        {canSpinToday && !isSpinning && (
+          <p className="spin-hint">One spin per day · Tap SPIN when you&apos;re ready.</p>
         )}
       </div>
 
@@ -136,6 +132,7 @@ function App() {
         quote={selectedQuote}
         onShare={selectedQuote ? handleShare : null}
         shareFeedback={shareFeedback}
+        nativeShareAvailable={nativeShareAvailable}
       />
     </div>
   );
