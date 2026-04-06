@@ -10,6 +10,11 @@ const SPIN_MS = 3000;
 const STORAGE_DATE = 'motino_lastSpinDate';
 const STORAGE_QUOTE = 'motino_todayQuote';
 
+function buildShareText(quote) {
+  const url = typeof window !== 'undefined' ? window.location.origin : '';
+  return `${quote}\n\n— via Motino\n${url}`;
+}
+
 function App() {
   const [rotation, setRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -83,11 +88,14 @@ function App() {
     if (!selectedQuote) return;
     setShareFeedback('');
 
-    const plain = selectedQuote;
+    const text = buildShareText(selectedQuote);
 
     if (typeof navigator.share === 'function') {
       try {
-        await navigator.share({ text: plain });
+        await navigator.share({
+          title: "Today's motivation",
+          text,
+        });
         return;
       } catch (err) {
         if (err && err.name === 'AbortError') return;
@@ -96,8 +104,8 @@ function App() {
 
     try {
       if (typeof navigator.clipboard?.writeText === 'function') {
-        await navigator.clipboard.writeText(plain);
-        setShareFeedback('Quote copied to clipboard');
+        await navigator.clipboard.writeText(text);
+        setShareFeedback('Copied to clipboard');
         window.setTimeout(() => setShareFeedback(''), 3500);
         return;
       }

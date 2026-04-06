@@ -324,11 +324,23 @@ body {
   letter-spacing: 0.01em;
 }
 
+.quote-closure {
+  width: 100%;
+  margin: 0;
+  padding: 0 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--text-light);
+  opacity: 0.88;
+}
+
 .share-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .quote-share-reveal {
@@ -371,6 +383,15 @@ body {
 .share-button:focus-visible {
   outline: 2px solid #6366f1;
   outline-offset: 2px;
+}
+
+.share-encouragement {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-light);
+  opacity: 0.82;
 }
 
 .share-feedback {

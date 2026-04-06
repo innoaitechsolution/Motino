@@ -10,11 +10,14 @@ function QuoteBox({ quote, onShare, shareFeedback, nativeShareAvailable }) {
         <p className="quote-text">{quote}</p>
       </blockquote>
 
+      <p className="quote-closure">Saved for today</p>
+
       {onShare && (
         <div className="share-block quote-share-reveal" key={`share-${quote}`}>
           <button type="button" className="share-button" onClick={onShare}>
             {shareLabel}
           </button>
+          <p className="share-encouragement">Brighten someone&apos;s day</p>
           {shareFeedback && (
             <p className="share-feedback" role="status">
               {shareFeedback}
