@@ -4,7 +4,7 @@ function SpinButton({ onClick, isSpinning, canSpinToday }) {
 
   let label = 'SPIN';
   if (busy) label = 'Spinning…';
-  else if (locked) label = 'Come back tomorrow';
+  else if (locked) label = 'See you tomorrow';
 
   return (
     <button
@@ -13,7 +13,11 @@ function SpinButton({ onClick, isSpinning, canSpinToday }) {
       onClick={onClick}
       disabled={busy || locked}
       aria-busy={busy}
-      aria-label={locked ? 'Already spun today. Come back tomorrow for a new spin.' : undefined}
+      aria-label={
+        locked
+          ? 'Your spin for today is complete. A new quote will be ready tomorrow.'
+          : undefined
+      }
     >
       {label}
     </button>

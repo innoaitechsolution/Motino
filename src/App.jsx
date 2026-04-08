@@ -15,6 +15,8 @@ function buildShareText(quote) {
   return `${quote}\n\n— via Motino\n${url}`;
 }
 
+const SESSION_LOADS_KEY = 'motino_sessionLoads';
+
 function App() {
   const [rotation, setRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -22,9 +24,28 @@ function App() {
   const [canSpinToday, setCanSpinToday] = useState(true);
   const [shareFeedback, setShareFeedback] = useState('');
   const [nativeShareAvailable, setNativeShareAvailable] = useState(false);
+  const [sessionLoads, setSessionLoads] = useState(1);
+  const [freshSpinThisSession, setFreshSpinThisSession] = useState(false);
 
   useEffect(() => {
     setNativeShareAvailable(typeof navigator.share === 'function');
+  }, []);
+
+  useEffect(() => {
+    const today = new Date().toDateString();
+    try {
+      const raw = sessionStorage.getItem(SESSION_LOADS_KEY);
+      let n = 0;
+      if (raw) {
+        const p = JSON.parse(raw);
+        if (p.date === today) n = p.n;
+      }
+      const next = { date: today, n: n + 1 };
+      sessionStorage.setItem(SESSION_LOADS_KEY, JSON.stringify(next));
+      setSessionLoads(next.n);
+    } catch {
+      setSessionLoads(1);
+    }
   }, []);
 
   useEffect(() => {
@@ -75,6 +96,7 @@ function App() {
 
     window.setTimeout(() => {
       setIsSpinning(false);
+      setFreshSpinThisSession(true);
       setSelectedQuote(quote);
       setCanSpinToday(false);
 
@@ -117,11 +139,14 @@ function App() {
     window.setTimeout(() => setShareFeedback(''), 3500);
   };
 
+  const welcomeBack =
+    sessionLoads > 1 && selectedQuote != null && !canSpinToday && !freshSpinThisSession;
+
   return (
     <div className="app">
       <header className="app-header entrance-in entrance-in--1">
         <h1 className="app-title">Motino</h1>
-        <p className="app-subtitle">Discover your motivation for the day</p>
+        <p className="app-subtitle">A quiet moment of motivation for your day</p>
       </header>
 
       <div className="wheel-container entrance-in entrance-in--2">
@@ -132,7 +157,15 @@ function App() {
         <SpinButton onClick={handleSpin} isSpinning={isSpinning} canSpinToday={canSpinToday} />
 
         {canSpinToday && !isSpinning && (
-          <p className="spin-hint">One spin per day · Tap SPIN when you&apos;re ready.</p>
+          <p className="spin-hint">
+            A small daily ritual — one spin when the moment feels right.
+          </p>
+        )}
+
+        {!canSpinToday && !isSpinning && (
+          <p className="spin-hint spin-hint--tomorrow">
+            Tomorrow holds a fresh spin and a new line just for you.
+          </p>
         )}
       </div>
 
@@ -141,6 +174,8 @@ function App() {
         onShare={selectedQuote ? handleShare : null}
         shareFeedback={shareFeedback}
         nativeShareAvailable={nativeShareAvailable}
+        welcomeBack={welcomeBack}
+        freshSpinThisSession={freshSpinThisSession}
       />
     </div>
   );

@@ -1,16 +1,37 @@
-function QuoteBox({ quote, onShare, shareFeedback, nativeShareAvailable }) {
+function QuoteBox({
+  quote,
+  onShare,
+  shareFeedback,
+  nativeShareAvailable,
+  welcomeBack,
+  freshSpinThisSession,
+}) {
   if (!quote) return null;
 
   const shareLabel = nativeShareAvailable ? 'Share' : 'Copy quote';
 
+  const closureText =
+    welcomeBack && !freshSpinThisSession ? 'Still yours today' : 'Saved for today';
+
   return (
     <div className="quote-container">
+      {welcomeBack && (
+        <p className="quote-welcome" role="status">
+          Welcome back — here&apos;s what you drew today.
+        </p>
+      )}
+
       <p className="quote-heading">Today&apos;s motivation</p>
+
       <blockquote className="quote-box quote-reveal" key={quote}>
         <p className="quote-text">{quote}</p>
       </blockquote>
 
-      <p className="quote-closure">Saved for today</p>
+      <p className="quote-closure">{closureText}</p>
+
+      {freshSpinThisSession && (
+        <p className="quote-whisper">Come back to it whenever you need a lift.</p>
+      )}
 
       {onShare && (
         <div className="share-block quote-share-reveal" key={`share-${quote}`}>
