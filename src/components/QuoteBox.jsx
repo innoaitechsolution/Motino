@@ -21,7 +21,7 @@ function QuoteBox({
         </p>
       )}
 
-      <p className="quote-heading">Today&apos;s motivation</p>
+      <p className="quote-heading">Your line today</p>
 
       <blockquote className="quote-box quote-reveal" key={quote}>
         <p className="quote-text">{quote}</p>

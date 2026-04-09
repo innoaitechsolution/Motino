@@ -115,7 +115,7 @@ function App() {
     if (typeof navigator.share === 'function') {
       try {
         await navigator.share({
-          title: "Today's motivation",
+          title: "Today's line from Motino",
           text,
         });
         return;
@@ -144,9 +144,15 @@ function App() {
 
   return (
     <div className="app">
-      <header className="app-header entrance-in entrance-in--1">
-        <h1 className="app-title">Motino</h1>
-        <p className="app-subtitle">A quiet moment of motivation for your day</p>
+      <header className="app-header hero entrance-in entrance-in--1">
+        <div className="hero-inner">
+          <p className="hero-eyebrow">One draw, once a day</p>
+          <h1 className="app-title">Motino</h1>
+          <p className="app-subtitle">
+            Spin when you&apos;re ready. One line stays with you until tomorrow—a small pause, not
+            another feed.
+          </p>
+        </div>
       </header>
 
       <div className="wheel-container entrance-in entrance-in--2">
@@ -157,14 +163,12 @@ function App() {
         <SpinButton onClick={handleSpin} isSpinning={isSpinning} canSpinToday={canSpinToday} />
 
         {canSpinToday && !isSpinning && (
-          <p className="spin-hint">
-            A small daily ritual — one spin when the moment feels right.
-          </p>
+          <p className="spin-hint">Your turn: one spin, then the wheel rests until tomorrow.</p>
         )}
 
         {!canSpinToday && !isSpinning && (
           <p className="spin-hint spin-hint--tomorrow">
-            Tomorrow holds a fresh spin and a new line just for you.
+            Today&apos;s draw is yours. Come back tomorrow for a new line.
           </p>
         )}
       </div>
