@@ -1,0 +1,17 @@
+{
+  "name": "Motino — daily motivation",
+  "short_name": "Motino",
+  "description": "Spin the wheel once per day and receive a motivational quote. Simple, calm, and yours until tomorrow.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#e8f5f0",
+  "theme_color": "#22c55e",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
