@@ -76,6 +76,16 @@ For **Netlify**, use `npm run build` and publish `dist/` — `netlify.toml` alre
 - **i18n** — Quotes and UI in multiple languages.
 - **Optional backend** — Server-side “once per day” if you need consistency across devices.
 
+## Future Visual Enhancements
+
+Backlog for later iterations (not implemented yet):
+
+- **Richer wheel visuals** — More depth and polish on the spin disc.
+- **Better quote reveal animation** — Clearer, smoother moment when the quote appears.
+- **Share card design** — Stronger layout and styling for what people share.
+- **More premium hero spacing** — Breathing room and hierarchy at the top of the page.
+- **Refined mobile polish** — Extra tuning for small screens and touch.
+
 ---
 
 Contributions, issues, and pull requests are welcome.
