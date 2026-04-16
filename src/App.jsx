@@ -115,7 +115,7 @@ function App() {
     if (typeof navigator.share === 'function') {
       try {
         await navigator.share({
-          title: "Today's line from Motino",
+          title: 'A small line from Motino',
           text,
         });
         return;
@@ -146,11 +146,11 @@ function App() {
     <div className="app">
       <header className="app-header hero entrance-in entrance-in--1">
         <div className="hero-inner">
-          <p className="hero-eyebrow">One draw, once a day</p>
+          <p className="hero-eyebrow">A quiet moment, once a day</p>
           <h1 className="app-title">Motino</h1>
           <p className="app-subtitle">
-            Spin when you&apos;re ready. One line stays with you until tomorrow—a small pause, not
-            another feed.
+            When you&apos;re ready, let the wheel turn once. One line is yours until the day
+            changes—a small ritual, not another scroll.
           </p>
         </div>
       </header>
@@ -162,13 +162,21 @@ function App() {
       <div className="spin-section entrance-in entrance-in--3">
         <SpinButton onClick={handleSpin} isSpinning={isSpinning} canSpinToday={canSpinToday} />
 
+        {isSpinning && (
+          <p className="spin-hint spin-hint--during" aria-live="polite">
+            Breathe. Let it slow to a stop—your line is finding you.
+          </p>
+        )}
+
         {canSpinToday && !isSpinning && (
-          <p className="spin-hint">Your turn: one spin, then the wheel rests until tomorrow.</p>
+          <p className="spin-hint">
+            One turn, when it feels right. After that, the wheel waits with you until tomorrow.
+          </p>
         )}
 
         {!canSpinToday && !isSpinning && (
           <p className="spin-hint spin-hint--tomorrow">
-            Today&apos;s draw is yours. Come back tomorrow for a new line.
+            Today&apos;s moment is complete. Rest here, or return tomorrow for a fresh line.
           </p>
         )}
       </div>

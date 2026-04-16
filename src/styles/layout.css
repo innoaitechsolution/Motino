@@ -230,6 +230,21 @@ body {
   font-style: italic;
 }
 
+.spin-hint--during {
+  font-style: italic;
+  opacity: 0.94;
+  animation: spin-hint-fade 0.45s var(--ease-out-expo) both;
+}
+
+@keyframes spin-hint-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.94;
+  }
+}
+
 .spin-button {
   appearance: none;
   font-family: inherit;
@@ -522,11 +537,16 @@ body {
   .quote-reveal,
   .quote-share-reveal,
   .quote-welcome,
-  .quote-whisper {
+  .quote-whisper,
+  .spin-hint--during {
     animation: none;
     opacity: 1;
     transform: none;
     filter: none;
+  }
+
+  .spin-hint--during {
+    opacity: 0.94;
   }
 
   .spin-button,

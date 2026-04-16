@@ -11,17 +11,19 @@ function QuoteBox({
   const shareLabel = nativeShareAvailable ? 'Share' : 'Copy quote';
 
   const closureText =
-    welcomeBack && !freshSpinThisSession ? 'Still yours today' : 'Saved for today';
+    welcomeBack && !freshSpinThisSession
+      ? 'Still yours until the day turns'
+      : 'Yours until tomorrow';
 
   return (
     <div className="quote-container">
       {welcomeBack && (
         <p className="quote-welcome" role="status">
-          Welcome back — here&apos;s what you drew today.
+          Welcome back — this was the line you gave yourself today.
         </p>
       )}
 
-      <p className="quote-heading">Your line today</p>
+      <p className="quote-heading">Today&apos;s line</p>
 
       <blockquote className="quote-box quote-reveal" key={quote}>
         <p className="quote-text">{quote}</p>
@@ -30,7 +32,7 @@ function QuoteBox({
       <p className="quote-closure">{closureText}</p>
 
       {freshSpinThisSession && (
-        <p className="quote-whisper">Come back to it whenever you need a lift.</p>
+        <p className="quote-whisper">Stay with it as long as you like—it&apos;s yours today.</p>
       )}
 
       {onShare && (
@@ -38,7 +40,7 @@ function QuoteBox({
           <button type="button" className="share-button" onClick={onShare}>
             {shareLabel}
           </button>
-          <p className="share-encouragement">Brighten someone&apos;s day</p>
+          <p className="share-encouragement">Share a gentle moment</p>
           {shareFeedback && (
             <p className="share-feedback" role="status">
               {shareFeedback}

@@ -2,9 +2,9 @@ function SpinButton({ onClick, isSpinning, canSpinToday }) {
   const busy = isSpinning;
   const locked = !canSpinToday && !isSpinning;
 
-  let label = 'SPIN';
-  if (busy) label = 'Spinning…';
-  else if (locked) label = 'See you tomorrow';
+  let label = 'Draw for today';
+  if (busy) label = 'Settling…';
+  else if (locked) label = 'Until tomorrow';
 
   return (
     <button
@@ -15,7 +15,7 @@ function SpinButton({ onClick, isSpinning, canSpinToday }) {
       aria-busy={busy}
       aria-label={
         locked
-          ? 'Your spin for today is complete. A new quote will be ready tomorrow.'
+          ? "Today's moment is complete. A new line will be ready tomorrow."
           : undefined
       }
     >

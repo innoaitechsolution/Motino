@@ -9,7 +9,10 @@ function Wheel({ rotation, isSpinning }) {
         >
           <div className="wheel-face" />
         </div>
-        <div className="wheel-center">MOTINO</div>
+        <div className="wheel-center">
+          <span className="wheel-center-title">MOTINO</span>
+          <span className="wheel-center-note">today</span>
+        </div>
       </div>
     </div>
   );
