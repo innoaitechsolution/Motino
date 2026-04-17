@@ -4,6 +4,11 @@
   height: min(288px, 86vw);
   margin: 0 auto;
   filter: drop-shadow(0 20px 36px rgba(15, 23, 42, 0.1));
+  transition: filter 0.5s ease;
+}
+
+.wheel-wrapper--settled {
+  filter: drop-shadow(0 18px 32px rgba(99, 102, 241, 0.12));
 }
 
 .wheel {
@@ -19,6 +24,17 @@
     0 0 0 11px rgba(255, 255, 255, 0.5),
     0 0 0 12px rgba(236, 72, 153, 0.1),
     0 16px 40px -8px rgba(15, 23, 42, 0.18);
+  transition: box-shadow 0.5s ease;
+}
+
+.wheel--settled {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.55) inset,
+    0 0 0 7px rgba(255, 255, 255, 0.98),
+    0 0 0 8px rgba(167, 139, 250, 0.12),
+    0 0 0 11px rgba(255, 255, 255, 0.55),
+    0 0 0 12px rgba(244, 114, 182, 0.12),
+    0 14px 36px -8px rgba(15, 23, 42, 0.14);
 }
 
 .wheel-spin {
@@ -167,6 +183,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .wheel-wrapper,
+  .wheel {
+    transition-duration: 0.01ms;
+  }
+
   .wheel-spin {
     transition-duration: 0.01ms;
   }

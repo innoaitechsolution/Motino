@@ -12,14 +12,14 @@ function QuoteBox({
 
   const closureText =
     welcomeBack && !freshSpinThisSession
-      ? 'Still yours until the day turns'
-      : 'Yours until tomorrow';
+      ? 'Still yours for today—take your time with it'
+      : 'Yours for the rest of today';
 
   return (
     <div className="quote-container">
       {welcomeBack && (
         <p className="quote-welcome" role="status">
-          Welcome back — this was the line you gave yourself today.
+          Welcome back — your line for today is still here, just as you left it.
         </p>
       )}
 

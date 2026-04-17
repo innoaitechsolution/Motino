@@ -156,10 +156,18 @@ function App() {
       </header>
 
       <div className="wheel-container entrance-in entrance-in--2">
-        <Wheel rotation={rotation} isSpinning={isSpinning} />
+        <Wheel
+          rotation={rotation}
+          isSpinning={isSpinning}
+          settledForToday={!canSpinToday && !isSpinning}
+        />
       </div>
 
-      <div className="spin-section entrance-in entrance-in--3">
+      <div
+        className={`spin-section entrance-in entrance-in--3${
+          !canSpinToday && !isSpinning ? ' spin-section--settled' : ''
+        }`}
+      >
         <SpinButton onClick={handleSpin} isSpinning={isSpinning} canSpinToday={canSpinToday} />
 
         {isSpinning && (
@@ -170,13 +178,16 @@ function App() {
 
         {canSpinToday && !isSpinning && (
           <p className="spin-hint">
-            One turn, when it feels right. After that, the wheel waits with you until tomorrow.
+            One turn, when it feels right. After that, your line stays with you while the wheel
+            rests until a new day.
           </p>
         )}
 
         {!canSpinToday && !isSpinning && (
           <p className="spin-hint spin-hint--tomorrow">
-            Today&apos;s moment is complete. Rest here, or return tomorrow for a fresh line.
+            <span className="spin-hint__lead">Today is complete — and that matters.</span>{' '}
+            Keep today&apos;s line close; tomorrow, another gentle draw will be waiting whenever
+            you&apos;re ready.
           </p>
         )}
       </div>
