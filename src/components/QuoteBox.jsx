@@ -3,33 +3,45 @@ function QuoteBox({
   onShare,
   shareFeedback,
   nativeShareAvailable,
-  welcomeBack,
+  quietReturn,
   freshSpinThisSession,
 }) {
   if (!quote) return null;
 
   const shareLabel = nativeShareAvailable ? 'Share' : 'Copy quote';
 
-  const closureText =
-    welcomeBack && !freshSpinThisSession
-      ? 'Still yours for today—take your time with it'
-      : 'Yours for the rest of today';
+  const closureText = quietReturn
+    ? 'Same draw as before—steady, familiar, nothing to chase.'
+    : 'Yours for the rest of today';
 
   return (
     <div className="quote-container">
-      {welcomeBack && (
-        <p className="quote-welcome" role="status">
-          Welcome back — your line for today is still here, just as you left it.
-        </p>
+      {quietReturn && (
+        <div className="quote-return-band" role="status">
+          <p className="quote-return-kicker">Your daily draw</p>
+          <p className="quote-return-body">
+            This is the line you already received today—held quietly on this device so you can
+            return without starting over.
+          </p>
+        </div>
       )}
 
-      <p className="quote-heading">Today&apos;s line</p>
+      <p className="quote-heading">{quietReturn ? "Still today's line" : "Today's line"}</p>
 
-      <blockquote className="quote-box quote-reveal" key={quote}>
+      <blockquote
+        className={`quote-box ${quietReturn ? 'quote-reveal--quiet' : 'quote-reveal'}`}
+        key={quote}
+      >
         <p className="quote-text">{quote}</p>
       </blockquote>
 
       <p className="quote-closure">{closureText}</p>
+
+      {quietReturn && (
+        <p className="quote-device-whisper">
+          Saved on this device only—not a profile, just a small kindness for your day.
+        </p>
+      )}
 
       {freshSpinThisSession && (
         <p className="quote-whisper">Stay with it as long as you like—it&apos;s yours today.</p>

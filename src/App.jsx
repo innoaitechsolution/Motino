@@ -15,8 +15,6 @@ function buildShareText(quote) {
   return `${quote}\n\n— via Motino\n${url}`;
 }
 
-const SESSION_LOADS_KEY = 'motino_sessionLoads';
-
 function App() {
   const [rotation, setRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -24,28 +22,10 @@ function App() {
   const [canSpinToday, setCanSpinToday] = useState(true);
   const [shareFeedback, setShareFeedback] = useState('');
   const [nativeShareAvailable, setNativeShareAvailable] = useState(false);
-  const [sessionLoads, setSessionLoads] = useState(1);
   const [freshSpinThisSession, setFreshSpinThisSession] = useState(false);
 
   useEffect(() => {
     setNativeShareAvailable(typeof navigator.share === 'function');
-  }, []);
-
-  useEffect(() => {
-    const today = new Date().toDateString();
-    try {
-      const raw = sessionStorage.getItem(SESSION_LOADS_KEY);
-      let n = 0;
-      if (raw) {
-        const p = JSON.parse(raw);
-        if (p.date === today) n = p.n;
-      }
-      const next = { date: today, n: n + 1 };
-      sessionStorage.setItem(SESSION_LOADS_KEY, JSON.stringify(next));
-      setSessionLoads(next.n);
-    } catch {
-      setSessionLoads(1);
-    }
   }, []);
 
   useEffect(() => {
@@ -139,18 +119,32 @@ function App() {
     window.setTimeout(() => setShareFeedback(''), 3500);
   };
 
-  const welcomeBack =
-    sessionLoads > 1 && selectedQuote != null && !canSpinToday && !freshSpinThisSession;
+  /** Today’s quote is showing, but not the immediate moment after a spin in this visit (restore, refresh, or later return). */
+  const quietReturn =
+    selectedQuote != null && !canSpinToday && !isSpinning && !freshSpinThisSession;
 
   return (
     <div className="app">
-      <header className="app-header hero entrance-in entrance-in--1">
+      <header
+        className={`app-header hero entrance-in entrance-in--1${quietReturn ? ' hero--quiet-return' : ''}`}
+      >
         <div className="hero-inner">
-          <p className="hero-eyebrow">A quiet moment, once a day</p>
+          <p className="hero-eyebrow">
+            {quietReturn ? 'Still your day — your line waited here' : 'A quiet moment, once a day'}
+          </p>
           <h1 className="app-title">Motino</h1>
           <p className="app-subtitle">
-            When you&apos;re ready, let the wheel turn once. One line is yours until the day
-            changes—a small ritual, not another scroll.
+            {quietReturn ? (
+              <>
+                Your line for today is still here, just as you left it. Nothing to redo—take your
+                time with it, and let it stay with you until the day turns over.
+              </>
+            ) : (
+              <>
+                When you&apos;re ready, let the wheel turn once. One line is yours until the day
+                changes—a small ritual, not another scroll.
+              </>
+            )}
           </p>
         </div>
       </header>
@@ -160,6 +154,7 @@ function App() {
           rotation={rotation}
           isSpinning={isSpinning}
           settledForToday={!canSpinToday && !isSpinning}
+          quietReturn={quietReturn}
         />
       </div>
 
@@ -168,7 +163,12 @@ function App() {
           !canSpinToday && !isSpinning ? ' spin-section--settled' : ''
         }`}
       >
-        <SpinButton onClick={handleSpin} isSpinning={isSpinning} canSpinToday={canSpinToday} />
+        <SpinButton
+          onClick={handleSpin}
+          isSpinning={isSpinning}
+          canSpinToday={canSpinToday}
+          quietReturn={quietReturn}
+        />
 
         {isSpinning && (
           <p className="spin-hint spin-hint--during" aria-live="polite">
@@ -183,7 +183,15 @@ function App() {
           </p>
         )}
 
-        {!canSpinToday && !isSpinning && (
+        {!canSpinToday && !isSpinning && quietReturn && (
+          <p className="spin-hint spin-hint--return">
+            <span className="spin-hint__lead">The wheel is resting — your draw is already chosen.</span>{' '}
+            Motino keeps today&apos;s line on this device so you can return without second-guessing
+            yourself.
+          </p>
+        )}
+
+        {!canSpinToday && !isSpinning && !quietReturn && (
           <p className="spin-hint spin-hint--tomorrow">
             <span className="spin-hint__lead">Today is complete — and that matters.</span>{' '}
             Keep today&apos;s line close; tomorrow, another gentle draw will be waiting whenever
@@ -197,7 +205,7 @@ function App() {
         onShare={selectedQuote ? handleShare : null}
         shareFeedback={shareFeedback}
         nativeShareAvailable={nativeShareAvailable}
-        welcomeBack={welcomeBack}
+        quietReturn={quietReturn}
         freshSpinThisSession={freshSpinThisSession}
       />
     </div>

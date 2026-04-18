@@ -58,10 +58,21 @@
   }
 }
 
-@keyframes quote-welcome-reveal {
+@keyframes quote-return-band-reveal {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes quote-reveal-quiet {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
   }
   to {
     opacity: 1;
@@ -198,6 +209,16 @@ body {
   opacity: 0.88;
 }
 
+.hero--quiet-return .hero-eyebrow {
+  letter-spacing: 0.16em;
+  color: #64748b;
+}
+
+.hero--quiet-return .app-subtitle {
+  opacity: 0.9;
+  max-width: 22rem;
+}
+
 .wheel-container {
   margin: clamp(0.85rem, 2.25vw, 1.35rem) 0 clamp(1.2rem, 2.85vw, 1.65rem);
   display: flex;
@@ -229,6 +250,13 @@ body {
   max-width: 20rem;
   color: #475569;
   opacity: 0.96;
+}
+
+.spin-hint--return {
+  max-width: 20.5rem;
+  color: #475569;
+  opacity: 0.95;
+  line-height: 1.58;
 }
 
 .spin-hint__lead {
@@ -366,17 +394,36 @@ body {
   width: 100%;
 }
 
-.quote-welcome {
+.quote-return-band {
   width: 100%;
-  margin: 0;
-  padding: 0 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.5;
+  margin: 0 0 0.15rem;
+  padding: 0.65rem 0.85rem 0.7rem;
   text-align: center;
-  color: var(--text-dark);
-  opacity: 0.82;
-  animation: quote-welcome-reveal 0.65s var(--ease-out-expo) both;
+  border-radius: 0.875rem;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+  animation: quote-return-band-reveal 0.7s var(--ease-out-expo) both;
+}
+
+.quote-return-kicker {
+  margin: 0 0 0.35rem;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  opacity: 0.95;
+}
+
+.quote-return-body {
+  margin: 0;
+  font-size: clamp(0.8125rem, 2.35vw, 0.875rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: #334155;
+  opacity: 0.9;
 }
 
 .quote-heading {
@@ -438,6 +485,10 @@ body {
   animation: quote-reveal 0.65s var(--ease-out-expo) both;
 }
 
+.quote-reveal--quiet {
+  animation: quote-reveal-quiet 0.85s var(--ease-out-expo) both;
+}
+
 .quote-text {
   position: relative;
   z-index: 1;
@@ -473,6 +524,19 @@ body {
   color: var(--text-light);
   opacity: 0.85;
   animation: quote-whisper-reveal 0.55s var(--ease-out-expo) 0.5s both;
+}
+
+.quote-device-whisper {
+  width: 100%;
+  margin: -0.05rem 0 0;
+  padding: 0 0.65rem;
+  font-size: 0.71875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--text-light);
+  opacity: 0.78;
+  animation: quote-whisper-reveal 0.55s var(--ease-out-expo) 0.2s both;
 }
 
 .share-block {
@@ -562,9 +626,11 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .entrance-in,
   .quote-reveal,
+  .quote-reveal--quiet,
   .quote-share-reveal,
-  .quote-welcome,
+  .quote-return-band,
   .quote-whisper,
+  .quote-device-whisper,
   .spin-hint--during {
     animation: none;
     opacity: 1;

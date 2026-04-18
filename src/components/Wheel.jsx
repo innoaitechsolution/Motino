@@ -1,5 +1,6 @@
-function Wheel({ rotation, isSpinning, settledForToday }) {
-  const centerNote = settledForToday ? 'yours' : 'today';
+function Wheel({ rotation, isSpinning, settledForToday, quietReturn }) {
+  let centerNote = 'today';
+  if (settledForToday) centerNote = quietReturn ? 'held' : 'yours';
 
   return (
     <div className={`wheel-wrapper${settledForToday ? ' wheel-wrapper--settled' : ''}`}>
