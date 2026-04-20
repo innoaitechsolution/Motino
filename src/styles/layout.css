@@ -26,7 +26,7 @@
 @keyframes entrance-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -127,15 +127,15 @@ body {
 }
 
 .entrance-in {
-  animation: entrance-in 0.75s var(--ease-out-expo) both;
+  animation: entrance-in 0.82s var(--ease-out-expo) both;
 }
 
 .entrance-in--1 {
-  animation-delay: 0.05s;
+  animation-delay: 0.04s;
 }
 
 .entrance-in--2 {
-  animation-delay: 0.14s;
+  animation-delay: 0.13s;
 }
 
 .entrance-in--3 {
@@ -143,7 +143,7 @@ body {
 }
 
 .app-header {
-  margin-bottom: clamp(1.125rem, 3.25vw, 1.75rem);
+  margin-bottom: clamp(1.2rem, 3.4vw, 1.85rem);
 }
 
 .hero {
@@ -160,9 +160,9 @@ body {
 .hero::after {
   content: '';
   display: block;
-  width: min(4rem, 28vw);
+  width: min(4.25rem, 30vw);
   height: 2px;
-  margin: clamp(0.85rem, 2.75vw, 1.125rem) auto 0;
+  margin: clamp(0.9rem, 2.85vw, 1.2rem) auto 0;
   border-radius: 999px;
   background: linear-gradient(
     90deg,
@@ -197,6 +197,7 @@ body {
   margin: 0 0 clamp(0.55rem, 1.75vw, 0.75rem);
   letter-spacing: -0.03em;
   line-height: 1.08;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.35));
 }
 
 .app-subtitle {
@@ -220,7 +221,7 @@ body {
 }
 
 .wheel-container {
-  margin: clamp(0.85rem, 2.25vw, 1.35rem) 0 clamp(1.2rem, 2.85vw, 1.65rem);
+  margin: clamp(0.9rem, 2.35vw, 1.4rem) 0 clamp(1.25rem, 2.95vw, 1.7rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -230,8 +231,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.55rem, 2vw, 0.7rem);
-  min-height: 3.75rem;
+  gap: clamp(0.6rem, 2.1vw, 0.78rem);
+  min-height: 4rem;
   padding: 0 clamp(0.25rem, 2vw, 0.5rem);
 }
 
@@ -386,11 +387,11 @@ body {
 }
 
 .quote-container {
-  margin-top: clamp(1.25rem, 4vw, 2rem);
+  margin-top: clamp(1.35rem, 4.2vw, 2.15rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.7rem;
+  gap: clamp(0.78rem, 2.2vw, 0.95rem);
   width: 100%;
 }
 
@@ -444,7 +445,7 @@ body {
   position: relative;
   width: 100%;
   margin: 0;
-  padding: clamp(1.35rem, 4vw, 1.65rem) clamp(1.35rem, 4vw, 1.75rem);
+  padding: clamp(1.4rem, 4.1vw, 1.7rem) clamp(1.35rem, 4vw, 1.75rem);
   padding-left: clamp(1.5rem, 4.5vw, 2rem);
   text-align: left;
   background: var(--surface-glass);
@@ -452,7 +453,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border-radius: 1.125rem;
   box-shadow: var(--quote-shadow);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.88);
   overflow: hidden;
 }
 
@@ -482,11 +483,15 @@ body {
 }
 
 .quote-reveal {
-  animation: quote-reveal 0.65s var(--ease-out-expo) both;
+  animation: quote-reveal 0.72s var(--ease-out-expo) both;
+}
+
+.quote-reveal--delayed {
+  animation-delay: 0.14s;
 }
 
 .quote-reveal--quiet {
-  animation: quote-reveal-quiet 0.85s var(--ease-out-expo) both;
+  animation: quote-reveal-quiet 0.88s var(--ease-out-expo) both;
 }
 
 .quote-text {
@@ -514,7 +519,7 @@ body {
 
 .quote-whisper {
   width: 100%;
-  margin: -0.15rem 0 0;
+  margin: -0.1rem 0 0;
   padding: 0 0.75rem;
   font-size: 0.78125rem;
   font-weight: 500;
@@ -523,7 +528,7 @@ body {
   text-align: center;
   color: var(--text-light);
   opacity: 0.85;
-  animation: quote-whisper-reveal 0.55s var(--ease-out-expo) 0.5s both;
+  animation: quote-whisper-reveal 0.58s var(--ease-out-expo) 0.58s both;
 }
 
 .quote-device-whisper {
@@ -547,7 +552,11 @@ body {
 }
 
 .quote-share-reveal {
-  animation: quote-share-reveal 0.5s var(--ease-out-expo) 0.12s both;
+  animation: quote-share-reveal 0.52s var(--ease-out-expo) 0.12s both;
+}
+
+.quote-share-reveal--after-spin {
+  animation-delay: 0.28s;
 }
 
 .share-button {
@@ -626,13 +635,16 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .entrance-in,
   .quote-reveal,
+  .quote-reveal--delayed,
   .quote-reveal--quiet,
   .quote-share-reveal,
+  .quote-share-reveal--after-spin,
   .quote-return-band,
   .quote-whisper,
   .quote-device-whisper,
   .spin-hint--during {
     animation: none;
+    animation-delay: 0s;
     opacity: 1;
     transform: none;
     filter: none;

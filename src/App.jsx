@@ -12,7 +12,7 @@ const STORAGE_QUOTE = 'motino_todayQuote';
 
 function buildShareText(quote) {
   const url = typeof window !== 'undefined' ? window.location.origin : '';
-  return `${quote}\n\n— via Motino\n${url}`;
+  return `${quote}\n\n— Motino\n${url}`;
 }
 
 function App() {
@@ -95,7 +95,7 @@ function App() {
     if (typeof navigator.share === 'function') {
       try {
         await navigator.share({
-          title: 'A small line from Motino',
+          title: 'A line from Motino',
           text,
         });
         return;
@@ -107,7 +107,7 @@ function App() {
     try {
       if (typeof navigator.clipboard?.writeText === 'function') {
         await navigator.clipboard.writeText(text);
-        setShareFeedback('Copied to clipboard');
+        setShareFeedback('Copied — ready when you are');
         window.setTimeout(() => setShareFeedback(''), 3500);
         return;
       }
@@ -115,7 +115,7 @@ function App() {
       /* fall through to message */
     }
 
-    setShareFeedback('Could not copy — try selecting the quote manually.');
+    setShareFeedback('Could not copy — select the quote by hand.');
     window.setTimeout(() => setShareFeedback(''), 3500);
   };
 
@@ -130,19 +130,19 @@ function App() {
       >
         <div className="hero-inner">
           <p className="hero-eyebrow">
-            {quietReturn ? 'Still your day — your line waited here' : 'A quiet moment, once a day'}
+            {quietReturn ? 'Your day, still — your line waited' : 'One unhurried moment, once a day'}
           </p>
           <h1 className="app-title">Motino</h1>
           <p className="app-subtitle">
             {quietReturn ? (
               <>
-                Your line for today is still here, just as you left it. Nothing to redo—take your
-                time with it, and let it stay with you until the day turns over.
+                Today&apos;s line is still here, as you left it. Nothing to redo—stay with it as
+                long as you need until the calendar turns.
               </>
             ) : (
               <>
-                When you&apos;re ready, let the wheel turn once. One line is yours until the day
-                changes—a small ritual, not another scroll.
+                When you&apos;re ready, give the wheel a single turn. One line stays with you until
+                tomorrow—a small ritual, not another scroll.
               </>
             )}
           </p>
@@ -172,30 +172,28 @@ function App() {
 
         {isSpinning && (
           <p className="spin-hint spin-hint--during" aria-live="polite">
-            Breathe. Let it slow to a stop—your line is finding you.
+            Easy breath. Let it ease to stillness—your line is on its way.
           </p>
         )}
 
         {canSpinToday && !isSpinning && (
           <p className="spin-hint">
-            One turn, when it feels right. After that, your line stays with you while the wheel
-            rests until a new day.
+            One turn, when the moment feels right. Then your line stays; the wheel rests until a new
+            day.
           </p>
         )}
 
         {!canSpinToday && !isSpinning && quietReturn && (
           <p className="spin-hint spin-hint--return">
-            <span className="spin-hint__lead">The wheel is resting — your draw is already chosen.</span>{' '}
-            Motino keeps today&apos;s line on this device so you can return without second-guessing
-            yourself.
+            <span className="spin-hint__lead">The wheel rests — your draw is already chosen.</span>{' '}
+            Today&apos;s line stays on this device so you can come back without second-guessing.
           </p>
         )}
 
         {!canSpinToday && !isSpinning && !quietReturn && (
           <p className="spin-hint spin-hint--tomorrow">
-            <span className="spin-hint__lead">Today is complete — and that matters.</span>{' '}
-            Keep today&apos;s line close; tomorrow, another gentle draw will be waiting whenever
-            you&apos;re ready.
+            <span className="spin-hint__lead">Today is settled — that counts.</span>{' '}
+            Keep the line close; tomorrow, another gentle draw will be here when you are.
           </p>
         )}
       </div>

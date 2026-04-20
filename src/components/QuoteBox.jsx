@@ -11,8 +11,12 @@ function QuoteBox({
   const shareLabel = nativeShareAvailable ? 'Share' : 'Copy quote';
 
   const closureText = quietReturn
-    ? 'Same draw as before—steady, familiar, nothing to chase.'
-    : 'Yours for the rest of today';
+    ? 'The same draw as before—steady, familiar, nothing to chase.'
+    : 'Yours until the day turns over';
+
+  const revealClass = quietReturn
+    ? 'quote-reveal--quiet'
+    : `quote-reveal${freshSpinThisSession ? ' quote-reveal--delayed' : ''}`;
 
   return (
     <div className="quote-container">
@@ -20,18 +24,15 @@ function QuoteBox({
         <div className="quote-return-band" role="status">
           <p className="quote-return-kicker">Your daily draw</p>
           <p className="quote-return-body">
-            This is the line you already received today—held quietly on this device so you can
-            return without starting over.
+            The line you already received today—kept here on this device so you can return without
+            beginning again.
           </p>
         </div>
       )}
 
       <p className="quote-heading">{quietReturn ? "Still today's line" : "Today's line"}</p>
 
-      <blockquote
-        className={`quote-box ${quietReturn ? 'quote-reveal--quiet' : 'quote-reveal'}`}
-        key={quote}
-      >
+      <blockquote className={`quote-box ${revealClass}`} key={quote}>
         <p className="quote-text">{quote}</p>
       </blockquote>
 
@@ -39,20 +40,23 @@ function QuoteBox({
 
       {quietReturn && (
         <p className="quote-device-whisper">
-          Saved on this device only—not a profile, just a small kindness for your day.
+          On this device only—no profile, just a quiet place for your line to wait.
         </p>
       )}
 
       {freshSpinThisSession && (
-        <p className="quote-whisper">Stay with it as long as you like—it&apos;s yours today.</p>
+        <p className="quote-whisper">Linger with it if you like—it belongs to today.</p>
       )}
 
       {onShare && (
-        <div className="share-block quote-share-reveal" key={`share-${quote}`}>
+        <div
+          className={`share-block quote-share-reveal${freshSpinThisSession ? ' quote-share-reveal--after-spin' : ''}`}
+          key={`share-${quote}`}
+        >
           <button type="button" className="share-button" onClick={onShare}>
             {shareLabel}
           </button>
-          <p className="share-encouragement">Share a gentle moment</p>
+          <p className="share-encouragement">Pass along a quiet lift</p>
           {shareFeedback && (
             <p className="share-feedback" role="status">
               {shareFeedback}
