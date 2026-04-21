@@ -11,8 +11,8 @@ const STORAGE_DATE = 'motino_lastSpinDate';
 const STORAGE_QUOTE = 'motino_todayQuote';
 
 function buildShareText(quote) {
-  const url = typeof window !== 'undefined' ? window.location.origin : '';
-  return `${quote}\n\n— Motino\n${url}`;
+  const body = typeof quote === 'string' ? quote.trim() : String(quote);
+  return `"${body}"\n\n— via Motino\nmotino.app`;
 }
 
 function App() {
