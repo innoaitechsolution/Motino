@@ -10,9 +10,11 @@ const SPIN_MS = 3000;
 const STORAGE_DATE = 'motino_lastSpinDate';
 const STORAGE_QUOTE = 'motino_todayQuote';
 
+const SHARE_HEADER = "✨ Today's motivation";
+
 function buildShareText(quote) {
   const body = typeof quote === 'string' ? quote.trim() : String(quote);
-  return `"${body}"\n\n— via Motino\nmotino.app`;
+  return `${SHARE_HEADER}\n\n"${body}"\n\n— via Motino\nmotino.app`;
 }
 
 function App() {
