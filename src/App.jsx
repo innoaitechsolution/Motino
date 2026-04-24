@@ -17,18 +17,30 @@ function buildShareText(quote) {
   return `${SHARE_HEADER}\n\n"${body}"\n\n— via Motino\nmotino.app`;
 }
 
+function canUseNativeShare(text) {
+  if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') return false;
+
+  if (typeof navigator.canShare === 'function') {
+    try {
+      return navigator.canShare({
+        title: 'A line from Motino',
+        text,
+      });
+    } catch {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function App() {
   const [rotation, setRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const [selectedQuote, setSelectedQuote] = useState(null);
   const [canSpinToday, setCanSpinToday] = useState(true);
   const [shareFeedback, setShareFeedback] = useState('');
-  const [nativeShareAvailable, setNativeShareAvailable] = useState(false);
   const [freshSpinThisSession, setFreshSpinThisSession] = useState(false);
-
-  useEffect(() => {
-    setNativeShareAvailable(typeof navigator.share === 'function');
-  }, []);
 
   useEffect(() => {
     const today = new Date().toDateString();
@@ -93,8 +105,9 @@ function App() {
     setShareFeedback('');
 
     const text = buildShareText(selectedQuote);
+    const nativeShareAvailable = canUseNativeShare(text);
 
-    if (typeof navigator.share === 'function') {
+    if (nativeShareAvailable) {
       try {
         await navigator.share({
           title: 'A line from Motino',
@@ -124,6 +137,7 @@ function App() {
   /** Today’s quote is showing, but not the immediate moment after a spin in this visit (restore, refresh, or later return). */
   const quietReturn =
     selectedQuote != null && !canSpinToday && !isSpinning && !freshSpinThisSession;
+  const nativeShareAvailable = selectedQuote ? canUseNativeShare(buildShareText(selectedQuote)) : false;
 
   return (
     <div className="app">
