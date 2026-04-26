@@ -1,66 +1,182 @@
 [
-  "Believe you can and you're halfway there.",
-  "The only way to do great work is to love what you do.",
-  "Don't watch the clock; do what it does. Keep going.",
-  "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-  "The future belongs to those who believe in the beauty of their dreams.",
-  "It is during our darkest moments that we must focus to see the light.",
-  "The only impossible journey is the one you never begin.",
-  "In the middle of difficulty lies opportunity.",
-  "You are never too old to set another goal or to dream a new dream.",
-  "The way to get started is to quit talking and begin doing.",
-  "Life is what happens to you while you're busy making other plans.",
-  "The purpose of our lives is to be happy.",
-  "Get busy living or get busy dying.",
-  "You have within you right now, everything you need to deal with whatever the world can throw at you.",
-  "The two most important days in your life are the day you are born and the day you find out why.",
-  "Whether you think you can or you think you can't, you're right.",
-  "The best time to plant a tree was 20 years ago. The second best time is now.",
-  "If you are working on something exciting that you really care about, you don't have to be pushed. The vision pulls you.",
-  "People who are crazy enough to think they can change the world, are the ones who do.",
-  "We may encounter many defeats but we must not be defeated.",
-  "The only person you are destined to become is the person you decide to be.",
-  "Go confidently in the direction of your dreams. Live the life you have imagined.",
-  "When one door of happiness closes, another opens, but often we look so long at the closed door that we do not see the one that has been opened for us.",
-  "Great minds discuss ideas; average minds discuss events; small minds discuss people.",
-  "The only limit to our realization of tomorrow will be our doubts of today.",
-  "Twenty years from now you will be more disappointed by the things that you didn't do than by the ones you did do.",
-  "To live is the rarest thing in the world. Most people just exist.",
-  "It does not matter how slowly you go as long as you do not stop.",
-  "If you want to lift yourself up, lift up someone else.",
-  "I have not failed. I've just found 10,000 ways that won't work.",
-  "You are allowed to move at a pace that keeps you kind to yourself.",
-  "Quiet effort still counts. Not everything valuable needs an audience.",
-  "One clear next step is enough for today.",
-  "You do not have to be perfect to be proud of how you show up.",
-  "Let your progress be uneven. Real life is.",
-  "Rest is part of the work, not a reward you must deserve first.",
-  "You can begin again without pretending the hard parts never happened.",
-  "Keep the promises you make to yourself as gently as you would to a friend.",
-  "Small wins deserve the same respect as big ones.",
-  "You are not behind; you are on your own timeline.",
-  "It is brave to keep choosing hope when the day feels thin.",
-  "Softness and strength can live in the same person.",
-  "You can want more and still appreciate how far you have come.",
-  "Not knowing the whole path is normal. Walk the part you can see.",
-  "Your worth is not a project you have to finish.",
-  "A slower season is still a season of growth.",
-  "You can set a boundary and still be a loving person.",
-  "Curiosity opens doors that pressure slams shut.",
-  "Let today be good enough without needing to be flawless.",
-  "You are allowed to enjoy the calm after you have worked for it.",
-  "Name what you need out loud, at least to yourself.",
-  "Discipline can be gentle; consistency does not require cruelty.",
-  "You can rebuild trust with yourself one kept promise at a time.",
-  "Celebrate the version of you that did not give up yesterday.",
-  "Light finds you faster when you stop forcing the dark to make sense.",
-  "Your energy is information. Listen before you spend it.",
-  "It is okay to outgrow a version of you that once felt safe.",
-  "Hold space for who you are becoming, not only who you were.",
-  "You can be grateful and still want change.",
-  "Peace often starts with one honest breath and a smaller to-do list.",
-  "Let your standards lift you, not shrink you.",
-  "You matter in the ordinary moments, not only the milestones.",
-  "Kindness to yourself is not laziness; it is maintenance.",
-  "You can start before you feel ready. Courage meets you on the way."
+  {
+    "quote": "Sometimes, look up at the sky. Who wouldn’t feel better getting lost in blue?",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "A little rain, then sunlight. Life moves like that. Seasons change, hope blooms again, and the story continues.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Yesterday I looked at the sky. Summer insists on arriving, while I am still in spring.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Life is a painting. Graceful. Still. Quietly beautiful.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "It is time to thank, once again, everything that makes life meaningful.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "All wishes belong to the blue. With it, one kind of longing. Without it, another.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "At the edge of life, to see beautiful days, you must first imagine them.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Songs that understand you stay on your lips. You move between dreaming and not dreaming. That is how waiting begins.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Some things begin. Some things end. That is how certain stories start. The details belong to those who lived them.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Good morning, world. To a bright and beautiful day.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "In the end, what awaits you may be magnificent. We are passing through beautiful times—the ones we always believed would come.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "When you cannot find the end of the maze, the universe notices. It pours light over you. Because despite life, you are still a mysterious hero.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "A new week begins with new hopes, without giving too much meaning to what stayed behind.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "A new country is discovering yourself. Being alone with who you are. Breaking old limits and building better ones.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Listening to yourself in the crowd—quietly, calmly, peacefully. A beautiful way to begin the day.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "When April arrives, I remember spring, hope, and not giving up. Even the city whispers: welcome back. Everything begins now.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Somewhere in the world, far from sorrow, in the very center of dreams—stay there a little longer.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "May our eyes always find beauty, while we become the heroes of the roads we deserve.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "The beauty of a city is shaped by the meaning we give it. For me: a new beginning, a little order, a little peace.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "If you truly have a dream, everything else is only an excuse. Where you are and what you have matter less than wanting it enough.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Who knows how many people sat on these benches, sharing sorrow, sharing joy. Everyone needs someone they can speak freely with. If you have that, you are lucky.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Start change with yourself. Dream first. Then step outside the glass. Try, grow tired, but do not quit. When you change, the world changes too.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Life has its own mystery—carrying us places we never expected. Inside us, a quiet hope: let the days pass, let good news come.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "May the beauty within us reach our smile. If the world outside feels messy, let the soul remain clean.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "There are beautiful people in life—heroes of kindness that ask for nothing back. They arrive through the fog and change your whole day.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "In a great city where only your name remains, leave every label behind. Bring your kind heart and whatever fits in your suitcase. Now you are here.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "The lines beside your eyes when you smile in the mirror—they are made of love. Let them stay. Let them remind you that you were good to this world.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Do not make life heavier. Be graceful. Think clearly. Remove your limits. Open the door to new things. Change, improve, brighten. Give yourself a chance.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Dead end. The place where many choose to quit. You see a wall, someone else sees a path. Perspective builds every limit.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "I never gave up in any season of my life. The most powerful inspiration has always been words earned through experience.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Life surprises us every day. It leaves gifts where we least expect them. We never know when, where, or with whom. We only know this: at the right time, we meet the right people.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Contrary to what many believe, life is not served on golden plates. Real success asks for effort—understood only by sacrificed sleep and those who chose to keep going.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "We must walk our own road. With our own truths, our own beliefs, our own way of seeing life. Not competing with others, but becoming more of ourselves.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Sometimes we forget the experience that years gave us. Know yourself—what you can do, what you have done, your strongest sides, your brightest victories.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "If you truly want it, there is very little you cannot do.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Even time can be fair. While teaching us patience, nature offers a deep breath—it helps, it heals.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "You are never too early or too late for a city. If it is meant to be lived, it is the right time. That is why unfinished sentences stay in the mind—waiting for life to place the final period.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Moving to another country feels like discovering yourself again. A pause in life, then a fresh beginning. First, your perspective changes. Then your expectations become clear. And slowly, you become someone who redraws their own path.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Work hard. Even until you feel tired. But do it for yourself. So that one day, you have a story worth rewriting.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "When was the last time you praised yourself? For every hope, every dream, every effort no one saw—do not wait for permission. Honour yourself first.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Perfectionists often judge themselves the most. They offer endless grace to others while forgetting their own heart. More compassion. More understanding. More kindness. Start with yourself.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Standing on your own feet is a brave expression. It means trying, learning, rebuilding, and rising. When life feels heavy, remember: what you can do is greater than what you fear you cannot.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Thoughtfulness is one of life’s finest qualities. I admire it. It feels elegant. And it always begins with empathy.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "A little magic known by those who were read stories as children: one day a hero, the next day nothing. If you are not yet who you want to be, work for it, believe in miracles, and let life keep flowing.",
+    "author": "Motino Originals"
+  },
+  {
+    "quote": "Those who achieve success step beyond comfort and learn to move with change. I chose the same road—toward new beginnings, carrying courage, effort, and every beautiful feeling in my suitcase.",
+    "author": "Motino Originals"
+  }
 ]

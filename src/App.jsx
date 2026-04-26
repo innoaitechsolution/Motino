@@ -10,11 +10,12 @@ const SPIN_MS = 3000;
 const STORAGE_DATE = 'motino_lastSpinDate';
 const STORAGE_QUOTE = 'motino_todayQuote';
 
-const SHARE_HEADER = "✨ Today's motivation";
+const SHARE_HEADER = "✨ Today's Motino Original";
 
 function buildShareText(quote) {
-  const body = typeof quote === 'string' ? quote.trim() : String(quote);
-  return `${SHARE_HEADER}\n\n"${body}"\n\n— via Motino\nmotino.app`;
+  const body = typeof quote?.quote === 'string' ? quote.quote.trim() : '';
+  const author = typeof quote?.author === 'string' ? quote.author.trim() : 'Motino Originals';
+  return `${SHARE_HEADER}\n\n"${body}"\n\n— ${author}\nvia Motino\nmotino.app`;
 }
 
 function canUseNativeShare(text) {
@@ -51,9 +52,14 @@ function App() {
       let restored = false;
       if (raw) {
         try {
-          const { quote } = JSON.parse(raw);
-          if (typeof quote === 'string' && quote.trim().length > 0) {
-            setSelectedQuote(quote);
+          const parsed = JSON.parse(raw);
+          const restoredQuote = parsed?.quote;
+          if (
+            restoredQuote &&
+            typeof restoredQuote.quote === 'string' &&
+            restoredQuote.quote.trim().length > 0
+          ) {
+            setSelectedQuote(restoredQuote);
             restored = true;
           }
         } catch {

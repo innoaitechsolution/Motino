@@ -519,6 +519,18 @@ body {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
+.quote-author {
+  position: relative;
+  z-index: 1;
+  margin: 0.8rem 0 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #475569;
+}
+
 .quote-closure {
   width: 100%;
   margin: 0;

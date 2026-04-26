@@ -6,7 +6,7 @@ function QuoteBox({
   quietReturn,
   freshSpinThisSession,
 }) {
-  if (!quote) return null;
+  if (!quote?.quote) return null;
 
   const shareLabel = nativeShareAvailable ? 'Share' : 'Copy quote';
 
@@ -30,10 +30,13 @@ function QuoteBox({
         </div>
       )}
 
-      <p className="quote-heading">{quietReturn ? "Still today's line" : "Today's line"}</p>
+      <p className="quote-heading">
+        {quietReturn ? "Still today's Motino Original" : "Today's Motino Original"}
+      </p>
 
-      <blockquote className={`quote-box ${revealClass}`} key={quote}>
-        <p className="quote-text">{quote}</p>
+      <blockquote className={`quote-box ${revealClass}`} key={quote.quote}>
+        <p className="quote-text">{quote.quote}</p>
+        <footer className="quote-author">— {quote.author}</footer>
       </blockquote>
 
       <p className="quote-closure">{closureText}</p>
@@ -51,7 +54,7 @@ function QuoteBox({
       {onShare && (
         <div
           className={`share-block quote-share-reveal${freshSpinThisSession ? ' quote-share-reveal--after-spin' : ''}`}
-          key={`share-${quote}`}
+          key={`share-${quote.quote}`}
         >
           <button type="button" className="share-button" onClick={onShare}>
             {shareLabel}
