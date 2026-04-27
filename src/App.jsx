@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Wheel from './components/Wheel';
 import QuoteBox from './components/QuoteBox';
 import SpinButton from './components/SpinButton';
+import { buildShareText } from './share/quoteShareText';
 import quotes from './assets/quotes.json';
 import './styles/layout.css';
 import './styles/wheel.css';
@@ -9,14 +10,6 @@ import './styles/wheel.css';
 const SPIN_MS = 3000;
 const STORAGE_DATE = 'motino_lastSpinDate';
 const STORAGE_QUOTE = 'motino_todayQuote';
-
-const SHARE_HEADER = "✨ Today's Motino Original";
-
-function buildShareText(quote) {
-  const body = typeof quote?.quote === 'string' ? quote.quote.trim() : '';
-  const author = typeof quote?.author === 'string' ? quote.author.trim() : 'Motino Originals';
-  return `${SHARE_HEADER}\n\n"${body}"\n\n— ${author}\nvia Motino\nmotino.app`;
-}
 
 function canUseNativeShare(text) {
   if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') return false;

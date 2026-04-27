@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
           if (siteBase) {
             out = out.replace(
               '</head>',
-              `    <link rel="canonical" href="${siteBase}/" />\n  </head>`,
+              `    <meta property="og:url" content="${siteBase}/" />\n    <link rel="canonical" href="${siteBase}/" />\n  </head>`,
             )
           }
           return out
