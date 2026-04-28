@@ -198,19 +198,6 @@ function App() {
           </p>
         )}
 
-        {!canSpinToday && !isSpinning && quietReturn && (
-          <p className="spin-hint spin-hint--return">
-            <span className="spin-hint__lead">The wheel rests — your draw is already chosen.</span>{' '}
-            Today&apos;s line stays on this device so you can come back without second-guessing.
-          </p>
-        )}
-
-        {!canSpinToday && !isSpinning && !quietReturn && (
-          <p className="spin-hint spin-hint--tomorrow">
-            <span className="spin-hint__lead">Today is settled — that counts.</span>{' '}
-            Keep the line close; tomorrow, another gentle draw will be here when you are.
-          </p>
-        )}
       </div>
 
       <QuoteBox
