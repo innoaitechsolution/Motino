@@ -11,3 +11,20 @@ export function buildShareText(quote) {
   const body = typeof quote?.quote === 'string' ? quote.quote.trim() : '';
   return `"${body}"\n\n— Motino Originals\n${liveSiteUrlWithSlash()}`;
 }
+
+/** Full post body for X / Twitter intent (Web intent `text` param). */
+export function buildTwitterShareText(quote) {
+  const body = typeof quote?.quote === 'string' ? quote.quote.trim() : '';
+  const url = liveSiteUrlWithSlash();
+  return `✨ Today's Motino Original
+
+"${body}"
+
+— Motino Originals
+${url}`;
+}
+
+export function buildTwitterIntentUrl(quote) {
+  const text = buildTwitterShareText(quote);
+  return `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+}

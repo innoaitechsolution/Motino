@@ -1,3 +1,5 @@
+import { buildTwitterIntentUrl } from '../share/quoteShareText';
+
 function QuoteBox({
   quote,
   onShare,
@@ -9,6 +11,7 @@ function QuoteBox({
   if (!quote?.quote) return null;
 
   const shareLabel = nativeShareAvailable ? 'Share' : 'Copy quote';
+  const twitterIntentUrl = buildTwitterIntentUrl(quote);
 
   const revealClass = quietReturn
     ? 'quote-reveal--quiet'
@@ -32,9 +35,20 @@ function QuoteBox({
           className={`share-block quote-share-reveal${freshSpinThisSession ? ' quote-share-reveal--after-spin' : ''}`}
           key={`share-${quote.quote}`}
         >
-          <button type="button" className="share-button" onClick={onShare}>
-            {shareLabel}
-          </button>
+          <div className="share-actions">
+            <button type="button" className="share-button" onClick={onShare}>
+              {shareLabel}
+            </button>
+            <a
+              className="share-button share-button--x"
+              href={twitterIntentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on X (opens in a new tab)"
+            >
+              X
+            </a>
+          </div>
           {shareFeedback && (
             <p className="share-feedback" role="status">
               {shareFeedback}

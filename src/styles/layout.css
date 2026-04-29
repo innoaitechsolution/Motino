@@ -577,6 +577,14 @@ body {
   gap: 0.4rem;
 }
 
+.share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .quote-share-reveal {
   animation: quote-share-reveal 0.52s var(--ease-out-expo) 0.12s both;
 }
@@ -621,6 +629,37 @@ body {
 .share-button:focus-visible {
   outline: 2px solid #6366f1;
   outline-offset: 2px;
+}
+
+.share-button--x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.35);
+  color: var(--text-light);
+  border-color: rgba(148, 163, 184, 0.45);
+  box-shadow: none;
+}
+
+.share-button--x:hover {
+  background: rgba(15, 23, 42, 0.06);
+  color: #0f172a;
+  border-color: rgba(100, 116, 139, 0.55);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.share-button--x:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.share-button--x:focus-visible {
+  outline-color: #64748b;
 }
 
 .share-encouragement {
@@ -686,7 +725,8 @@ body {
   }
 
   .spin-button,
-  .share-button {
+  .share-button,
+  .share-button--x {
     transition-duration: 0.01ms;
   }
 
@@ -696,7 +736,9 @@ body {
   }
 
   .share-button:hover,
-  .share-button:active {
+  .share-button:active,
+  .share-button--x:hover,
+  .share-button--x:active {
     transform: none;
   }
 }
