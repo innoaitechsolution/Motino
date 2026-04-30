@@ -28,3 +28,9 @@ export function buildTwitterIntentUrl(quote) {
   const text = buildTwitterShareText(quote);
   return `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
 }
+
+/** Pre-filled message for WhatsApp (same block as X); opens app or web.whatsapp.com via wa.me. */
+export function buildWhatsAppShareUrl(quote) {
+  const text = buildTwitterShareText(quote);
+  return `https://wa.me/?text=${encodeURIComponent(text)}`;
+}

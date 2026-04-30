@@ -662,6 +662,39 @@ body {
   outline-color: #64748b;
 }
 
+.share-button--wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.5rem 0.65rem;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.35);
+  color: #128c7e;
+  border-color: rgba(18, 140, 126, 0.28);
+  box-shadow: none;
+}
+
+.share-button--wa:hover {
+  background: rgba(18, 140, 126, 0.08);
+  color: #075e54;
+  border-color: rgba(18, 140, 126, 0.45);
+  box-shadow: 0 2px 8px rgba(18, 140, 126, 0.08);
+}
+
+.share-button--wa:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.share-button--wa:focus-visible {
+  outline-color: #128c7e;
+}
+
+.share-button-wa-icon {
+  display: inline-flex;
+  line-height: 0;
+}
+
 .share-encouragement {
   margin: 0;
   font-size: 0.75rem;
@@ -726,7 +759,8 @@ body {
 
   .spin-button,
   .share-button,
-  .share-button--x {
+  .share-button--x,
+  .share-button--wa {
     transition-duration: 0.01ms;
   }
 
@@ -738,7 +772,9 @@ body {
   .share-button:hover,
   .share-button:active,
   .share-button--x:hover,
-  .share-button--x:active {
+  .share-button--x:active,
+  .share-button--wa:hover,
+  .share-button--wa:active {
     transform: none;
   }
 }
