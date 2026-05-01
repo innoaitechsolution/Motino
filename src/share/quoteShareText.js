@@ -34,3 +34,16 @@ export function buildWhatsAppShareUrl(quote) {
   const text = buildTwitterShareText(quote);
   return `https://wa.me/?text=${encodeURIComponent(text)}`;
 }
+
+/**
+ * Facebook web sharer: shares the live site URL. Optional `quote` may be picked up by the dialog when supported.
+ */
+export function buildFacebookShareUrl(quote) {
+  const u = liveSiteUrlWithSlash();
+  const params = new URLSearchParams({ u });
+  const body = typeof quote?.quote === 'string' ? quote.quote.trim() : '';
+  if (body) {
+    params.set('quote', `"${body}" — Motino Originals`);
+  }
+  return `https://www.facebook.com/sharer/sharer.php?${params.toString()}`;
+}

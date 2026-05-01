@@ -695,6 +695,39 @@ body {
   line-height: 0;
 }
 
+.share-button--fb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.5rem 0.65rem;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.35);
+  color: #1877f2;
+  border-color: rgba(24, 119, 242, 0.3);
+  box-shadow: none;
+}
+
+.share-button--fb:hover {
+  background: rgba(24, 119, 242, 0.1);
+  color: #166fe5;
+  border-color: rgba(24, 119, 242, 0.5);
+  box-shadow: 0 2px 8px rgba(24, 119, 242, 0.1);
+}
+
+.share-button--fb:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.share-button--fb:focus-visible {
+  outline-color: #1877f2;
+}
+
+.share-button-fb-icon {
+  display: inline-flex;
+  line-height: 0;
+}
+
 .share-encouragement {
   margin: 0;
   font-size: 0.75rem;
@@ -760,7 +793,8 @@ body {
   .spin-button,
   .share-button,
   .share-button--x,
-  .share-button--wa {
+  .share-button--wa,
+  .share-button--fb {
     transition-duration: 0.01ms;
   }
 
@@ -774,7 +808,9 @@ body {
   .share-button--x:hover,
   .share-button--x:active,
   .share-button--wa:hover,
-  .share-button--wa:active {
+  .share-button--wa:active,
+  .share-button--fb:hover,
+  .share-button--fb:active {
     transform: none;
   }
 }
