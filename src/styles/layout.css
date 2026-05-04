@@ -753,6 +753,191 @@ body {
   color: var(--text-light);
 }
 
+.share-actions-secondary {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.15rem;
+}
+
+.share-button--card {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  color: #64748b;
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.42);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.share-button--card:hover:not(:disabled) {
+  color: #475569;
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(100, 116, 139, 0.5);
+  transform: none;
+  box-shadow: none;
+}
+
+.share-button--card:focus-visible {
+  outline-color: #94a3b8;
+}
+
+.share-button--card:disabled {
+  opacity: 0.68;
+  cursor: wait;
+}
+
+.share-button--card:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Off-screen Instagram Story canvas (1080×1920) — captured with html2canvas */
+.quote-card-export-host {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.quote-card-export {
+  width: 1080px;
+  height: 1920px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+  color: #0f172a;
+  background: linear-gradient(
+    155deg,
+    var(--pastel-mint) 0%,
+    #f0f9ff 32%,
+    var(--pastel-lavender) 68%,
+    var(--pastel-peach) 100%
+  );
+}
+
+.quote-card-export__inner {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 88px 72px 96px;
+  text-align: center;
+}
+
+.quote-card-export__kicker {
+  margin: 0 0 40px;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #475569;
+  line-height: 1.35;
+}
+
+.quote-card-export__surface {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 56px 52px 48px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 4px 6px -1px rgba(15, 23, 42, 0.06),
+    0 18px 40px -12px rgba(99, 102, 241, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.quote-card-export__surface::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  border-radius: 28px 0 0 28px;
+  background: linear-gradient(180deg, #6366f1 0%, #a855f7 52%, #ec4899 100%);
+}
+
+.quote-card-export__surface::after {
+  content: '“';
+  position: absolute;
+  top: 40px;
+  right: 44px;
+  font-family: 'Poppins', Georgia, serif;
+  font-size: 88px;
+  line-height: 1;
+  font-weight: 700;
+  color: rgba(99, 102, 241, 0.12);
+  pointer-events: none;
+  user-select: none;
+}
+
+.quote-card-export__quote {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-right: 72px;
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+  font-size: 38px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.58;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.quote-card-export__author {
+  position: relative;
+  z-index: 1;
+  margin: 36px 0 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #475569;
+}
+
+.quote-card-export__footer {
+  margin-top: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.quote-card-export__wordmark {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  /* Solid brand color so raster export (html2canvas) stays legible */
+  color: #6366f1;
+  opacity: 0.94;
+}
+
+.quote-card-export__url {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #64748b;
+  letter-spacing: 0.01em;
+}
+
 @media (min-width: 768px) {
   #root {
     max-width: 32rem;
@@ -836,6 +1021,10 @@ body {
   .share-button--wa:active,
   .share-button--fb:hover,
   .share-button--fb:active {
+    transform: none;
+  }
+
+  .share-button--card:active:not(:disabled) {
     transform: none;
   }
 }

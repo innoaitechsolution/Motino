@@ -1,4 +1,6 @@
+import { useRef, useState } from 'react';
 import { buildTwitterIntentUrl, buildWhatsAppShareUrl, buildFacebookShareUrl } from '../share/quoteShareText';
+import { downloadQuoteCardPng } from '../share/downloadQuoteCard';
 
 function QuoteBox({
   quote,
@@ -8,6 +10,10 @@ function QuoteBox({
   quietReturn,
   freshSpinThisSession,
 }) {
+  const exportRootRef = useRef(null);
+  const [cardExportMessage, setCardExportMessage] = useState('');
+  const [isExportingCard, setIsExportingCard] = useState(false);
+
   if (!quote?.quote) return null;
 
   const shareLabel = nativeShareAvailable ? 'Share' : 'Copy quote';
@@ -15,12 +21,43 @@ function QuoteBox({
   const whatsAppShareUrl = buildWhatsAppShareUrl(quote);
   const facebookShareUrl = buildFacebookShareUrl(quote);
 
+  const handleDownloadCard = async () => {
+    const el = exportRootRef.current;
+    if (!el || isExportingCard) return;
+    setCardExportMessage('');
+    setIsExportingCard(true);
+    try {
+      await downloadQuoteCardPng(el);
+    } catch {
+      setCardExportMessage('Could not save the image — try again.');
+      window.setTimeout(() => setCardExportMessage(''), 4000);
+    } finally {
+      setIsExportingCard(false);
+    }
+  };
+
   const revealClass = quietReturn
     ? 'quote-reveal--quiet'
     : `quote-reveal${freshSpinThisSession ? ' quote-reveal--delayed' : ''}`;
 
   return (
     <div className="quote-container">
+      <div className="quote-card-export-host" aria-hidden="true">
+        <div ref={exportRootRef} className="quote-card-export">
+          <div className="quote-card-export__inner">
+            <p className="quote-card-export__kicker">Today&apos;s Motino Original</p>
+            <div className="quote-card-export__surface">
+              <p className="quote-card-export__quote">{quote.quote}</p>
+              <p className="quote-card-export__author">— Motino Originals</p>
+            </div>
+            <div className="quote-card-export__footer">
+              <span className="quote-card-export__wordmark">Motino</span>
+              <span className="quote-card-export__url">https://motino.netlify.app/</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <p className="quote-heading">
         {quietReturn ? "Still today's Motino Original" : "Today's Motino Original"}
       </p>
@@ -89,9 +126,20 @@ function QuoteBox({
               </a>
             </div>
           </div>
-          {shareFeedback && (
+          <div className="share-actions-secondary">
+            <button
+              type="button"
+              className="share-button share-button--card"
+              onClick={handleDownloadCard}
+              disabled={isExportingCard}
+              aria-busy={isExportingCard}
+            >
+              {isExportingCard ? 'Preparing…' : 'Download card'}
+            </button>
+          </div>
+          {(shareFeedback || cardExportMessage) && (
             <p className="share-feedback" role="status">
-              {shareFeedback}
+              {cardExportMessage || shareFeedback}
             </p>
           )}
         </div>
