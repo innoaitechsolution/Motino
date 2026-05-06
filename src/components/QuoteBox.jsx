@@ -1,5 +1,10 @@
 import { useRef, useState } from 'react';
-import { buildTwitterIntentUrl, buildWhatsAppShareUrl, buildFacebookShareUrl } from '../share/quoteShareText';
+import {
+  buildTwitterIntentUrl,
+  buildWhatsAppShareUrl,
+  buildFacebookShareUrl,
+  quoteAuthorDisplay,
+} from '../share/quoteShareText';
 import { downloadQuoteCardPng } from '../share/downloadQuoteCard';
 
 function QuoteBox({
@@ -16,6 +21,7 @@ function QuoteBox({
 
   if (!quote?.quote) return null;
 
+  const authorLine = quoteAuthorDisplay(quote);
   const shareLabel = nativeShareAvailable ? 'Share' : 'Copy quote';
   const twitterIntentUrl = buildTwitterIntentUrl(quote);
   const whatsAppShareUrl = buildWhatsAppShareUrl(quote);
@@ -48,7 +54,9 @@ function QuoteBox({
             <p className="quote-card-export__kicker">Today&apos;s Motino Original</p>
             <div className="quote-card-export__surface">
               <p className="quote-card-export__quote">{quote.quote}</p>
-              <p className="quote-card-export__author">— Motino Originals</p>
+              {authorLine ? (
+                <p className="quote-card-export__author">— {authorLine}</p>
+              ) : null}
             </div>
             <div className="quote-card-export__footer">
               <span className="quote-card-export__wordmark">Motino</span>
@@ -64,7 +72,7 @@ function QuoteBox({
 
       <blockquote className={`quote-box ${revealClass}`} key={quote.quote}>
         <p className="quote-text">{quote.quote}</p>
-        <footer className="quote-author">— {quote.author}</footer>
+        {authorLine ? <footer className="quote-author">— {authorLine}</footer> : null}
       </blockquote>
 
       <p className="quote-closure">Yours until tomorrow</p>
