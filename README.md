@@ -6,17 +6,17 @@ Daily motivation in one spin. **Motino** is a small, responsive web app: spin th
 
 ## Features
 
-- **Daily ritual** — One spin per calendar day (`localStorage`). If you come back the same day, today’s line is restored and the wheel stays settled until tomorrow.
-- **Motino Originals** — Quotes and attribution live in static JSON (`src/assets/quotes.json`); each line shows an author line on the card.
-- **Rainbow wheel** — Eight-color gradient; only the outer disc spins so the center and pointer stay readable.
+- **Daily ritual** — One spin per calendar day (`localStorage` keys `motino_lastSpinDate` / `motino_todayQuote`). If you come back the same day, today’s line is restored and the wheel stays settled until tomorrow.
+- **Motino Originals** — About **45** quotes in static JSON (`src/assets/quotes.json`); each entry can include `quote` and `author` for the card and share text.
+- **Rainbow wheel** — Multi-color gradient; only the outer disc spins so the center hub and pointer stay readable.
 - **Quote card** — Frosted on-screen card; calmer copy when you’re returning later the same day (“quiet return”).
-- **Share & copy** — Native share when available; otherwise copy. Quick links for **X**, **WhatsApp**, and **Facebook** (prefilled text or site URL as supported).
-- **Download card** — PNG export of a story-sized quote image (`html2canvas`).
-- **Responsive** — Works on small and large screens; respects **prefers-reduced-motion**.
-- **SEO** — Core meta tags, Open Graph, Twitter cards, and JSON-LD in `index.html`. Optional **`VITE_SITE_URL`** at build time for canonical / `og:url` (see `vite.config.js`).
+- **Share & copy** — Native **Web Share** when available; otherwise clipboard copy. Quick links for **X**, **WhatsApp**, and **Facebook** (prefilled text or site URL as supported).
+- **Download card** — PNG export of a story-sized quote image via `html2canvas`.
+- **Responsive** — Works on small and large screens; respects **`prefers-reduced-motion`** in CSS.
+- **SEO & install hints** — Core meta tags, Open Graph, Twitter cards, and JSON-LD in `index.html`. `public/robots.txt`, `public/og-image.svg`, and `public/site.webmanifest` (with favicon) support crawlers and “add to home screen” metadata.
 - **Deploy-ready** — Vite production build and Netlify config (`netlify.toml`) for static hosting.
 
-## Tech Stack
+## Tech stack
 
 | Area | Choice |
 | --- | --- |
@@ -27,14 +27,19 @@ Daily motivation in one spin. **Motino** is a small, responsive web app: spin th
 | Content | Static JSON (`src/assets/quotes.json`) |
 | Card export | `html2canvas` |
 
-## Project Structure
+## Project structure
 
 ```
 Motino/
-├── index.html              # Entry HTML, fonts, meta / social tags
+├── index.html              # Entry HTML, fonts, meta / social tags (%SITE_BASE% placeholders)
 ├── netlify.toml            # Build & SPA redirects
 ├── package.json
-├── vite.config.js
+├── vite.config.js          # React plugin; injects canonical / og:url when VITE_SITE_URL is set
+├── public/
+│   ├── favicon.svg
+│   ├── og-image.svg
+│   ├── robots.txt
+│   └── site.webmanifest
 ├── src/
 │   ├── main.jsx            # React root
 │   ├── App.jsx             # Spin flow, storage, share
@@ -55,7 +60,7 @@ Motino/
 
 ## Setup
 
-**Requirements:** Node.js and npm.
+**Requirements:** [Node.js](https://nodejs.org/) (LTS recommended) and npm.
 
 ```bash
 npm install
@@ -76,9 +81,15 @@ Output goes to `dist/`. Preview it locally:
 npm run preview
 ```
 
-For **Netlify**, use `npm run build` and publish `dist/` — `netlify.toml` already sets the publish directory and SPA redirect. Set **`VITE_SITE_URL`** (e.g. `https://motino.netlify.app`) in the Netlify environment if you want canonical and Open Graph URLs filled in at build time.
+## Environment variables
 
-## Future Improvements
+| Variable | When | Effect |
+| --- | --- | --- |
+| `VITE_SITE_URL` | Build (`npm run build`) | Trimmed and injected into `index.html`: replaces `%SITE_BASE%` in `og:image` / `twitter:image`, and adds `<meta property="og:url">` and `<link rel="canonical">` when non-empty. |
+
+For **Netlify**, set `VITE_SITE_URL` to your public origin (e.g. `https://motino.netlify.app`) so social previews and canonical URLs resolve correctly. `netlify.toml` already uses `npm run build` and publishes `dist/` with an SPA fallback to `index.html`.
+
+## Future improvements
 
 - **PWA** — Offline shell, install prompt, cached assets.
 - **Theming** — Light/dark or custom accent colors.
@@ -86,7 +97,7 @@ For **Netlify**, use `npm run build` and publish `dist/` — `netlify.toml` alre
 - **i18n** — Quotes and UI in multiple languages.
 - **Optional backend** — Server-side “once per day” if you need consistency across devices.
 
-## Future Visual Enhancements
+## Future visual enhancements
 
 Backlog for later iterations (not implemented yet):
 
